@@ -1,3 +1,6 @@
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
     const randomNum = Math.random();
     const roundedNum = Math.floor(randomNum * 100);
@@ -12,9 +15,24 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-    return prompt();
+    return prompt().toLowerCase();
 }
 
-const t = getHumanChoice();
+function playRound(humanChoice, computerChoice) {
+    if ((humanChoice === "paper" && computerChoice === "rock") || 
+        (humanChoice === "scissors" && computerChoice === "paper") ||
+        (humanChoice === "rock" && computerChoice === "scissors")) {
+        humanScore++;
+        console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
+    } else if (humanChoice === computerChoice) {
+        console.log("It's a draw!");
+        return;
+    } else {
+        console.log(`You Lose! ${computerChoice} beats ${humanChoice}`);
+        computerScore++;
+    }
 
-console.log(t);
+}
+
+playRound(getHumanChoice(), getComputerChoice());
+playRound(getHumanChoice(), getComputerChoice());
